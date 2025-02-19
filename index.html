@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PHA5E Landing Page with Loader</title>
+
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      @font-face {
+        font-family: "druk";
+        src: url(/DrukWideBold.ttf) format("truetype");
+      }
+      @font-face {
+        font-family: "area";
+        src: url(/fonnts.com-Area_Normal_Regular.otf) format("opentype");
+      }
+      @font-face {
+        font-family: "area";
+        src: url(/fonnts.com-Area_Normal_Thin.otf) format("opentype");
+      }
+
+      body,
+      p,
+      a,
+      li {
+        font-family: "area", sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "druk", sans-serif;
+      }
+
+  
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        flex-direction: column;
+      }
+      .logo-svg {
+        width: 800px;
+        height: 200px;
+      }
+      .text-outline {
+        stroke-dasharray: 1500;
+        stroke-dashoffset: 1500;
+        background: linear-gradient(to top, white 50%, transparent 50%);
+        background-size: 100% 200%;
+        background-position: 0 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .fill-rect {
+        transform-origin: bottom;
+      }
+
+      
+      .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .img-block {
+        transition: transform 0.3s ease-out;
+      }
+      .img-block img {
+        transition: all 0.3s ease;
+        filter: none;
+        border: 1px solid transparent;
+      }
+
+      
+      .image-wrapper:has(.img-block:hover) .img-block:not(:hover) {
+        border: 1px solid gray;
+      }
+      .image-wrapper:has(.img-block:hover) .img-block:not(:hover) img {
+        opacity: 0;
+      }
+
+      .img-block:hover {
+        z-index: 2;
+      }
+      .img-block:hover img {
+        transform: scale(1.05);
+      }
+
+      .image-wrapper:hover .img-block:hover ~ .hero-text {
+        color: #000;
+        -webkit-text-stroke: 1px gray;
+        z-index: -1;
+      }
+
+      .hero-text {
+        pointer-events: none;
+      }
+
+      
+      @media (max-width: 767px) {
+
+        .img-block {
+          width: 10rem; 
+          height: 8rem; 
+        }
+       
+        .img-block:nth-child(1) {
+          top: 20%;
+          left: 10%;
+        }
+        .img-block:nth-child(2) {
+          top: 40%;
+          right: 10%;
+        }
+        .img-block:nth-child(3) {
+          bottom: 20%;
+          left: 25%;
+        }
+        .img-block:nth-child(4) {
+          bottom: 10%;
+          right: 25%;
+        }
+       
+        .hero-text {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-black text-white">
+   
+    <div id="preloader">
+      <svg viewBox="0 0 800 200" class="logo-svg">
+        <defs>
+          <mask id="mask">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <text
+              x="50%"
+              y="50%"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              font-family="druk"
+              font-size="120px"
+              fill="black"
+            >
+              PHA5E
+            </text>
+          </mask>
+        </defs>
+        <text
+          x="50%"
+          y="50%"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          class="text-outline"
+          font-family="druk"
+          font-size="120px"
+          stroke="white"
+          stroke-width="1"
+          fill="none"
+        >
+          PHA5E
+        </text>
+        <rect
+          class="fill-rect"
+          x="0"
+          y="200"
+          width="100%"
+          height="100%"
+          fill="white"
+          mask="url(#mask)"
+        />
+      </svg>
+    </div>
+
+  
+    <nav class="fixed w-full z-20 top-0 left-0 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex-shrink-0">
+            <h1 class="text-2xl font-bold">PHA5E</h1>
+          </div>
+
+          <div class="hidden md:block">
+            <ul class="ml-10 flex items-baseline space-x-16">
+              <li>
+                <a
+                  href="#hero"
+                  class="text-white hover:text-gray-300 transition duration-300"
+                  >Our Vision</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="text-white hover:text-gray-300 transition duration-300"
+                  >Our Team</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  class="text-white hover:text-gray-300 transition duration-300"
+                  >Our Projects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-white hover:text-gray-300 transition duration-300"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      id="hero"
+      class="h-screen flex items-center justify-center relative"
+    >
+
+      <div class="image-wrapper">
+        
+        <div
+          class="img-block absolute w-72 h-64 top-36 left-64 overflow-hidden transition-transform duration-300"
+        >
+          <img
+            src="/bigger.png"
+            alt="Image1"
+            class="object-cover w-full h-full"
+          />
+        </div>
+
+        <div
+          class="img-block absolute w-72 h-64 top-1/4 right-16 overflow-hidden transition-transform duration-300"
+        >
+          <img
+            src="/muse.png"
+            alt="Image2"
+            class="object-cover w-full h-full"
+          />
+        </div>
+
+        <div
+          class="img-block absolute w-72 h-64 bottom-0 left-1/4 overflow-hidden transition-transform duration-300"
+        >
+          <img src="/mao.png" alt="Image3" class="object-cover w-full h-full" />
+        </div>
+
+        <div
+          class="img-block absolute w-72 h-64 bottom-10 right-1/3 overflow-hidden transition-transform duration-300"
+        >
+          <img
+            src="/tree.jpg"
+            alt="Image4"
+            class="object-cover w-full h-full"
+          />
+        </div>
+
+        
+        <h1
+          class="hero-text absolute text-center text-5xl md:text-8xl font-extrabold uppercase top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-colors duration-300"
+        >
+          Imagining Unique Concepts<br />
+          and Digital Experiences
+        </h1>
+      </div>
+    </header>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        const tl = gsap.timeline();
+
+        tl.to(".text-outline", {
+          strokeDashoffset: 0,
+          duration: 2,
+          ease: "power4.inOut",
+        })
+          .to(".text-outline", {
+            fill: "white",
+            duration: 1,
+            ease: "power2.InOut",
+          })
+          .to("#preloader", {
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.inOut",
+            onComplete: () => {
+              document.getElementById("preloader").style.display = "none";
+            },
+          });
+      });
+    </script>
+
+  
+    <script>
+      const images = document.querySelectorAll(".img-block");
+      let parallaxEnabled = false;
+
+      function handleMouseMove(e) {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        images.forEach((image) => {
+          const rect = image.getBoundingClientRect();
+          const imageX = rect.left + rect.width / 2;
+          const imageY = rect.top + rect.height / 2;
+
+          const distanceX = mouseX - imageX;
+          const distanceY = mouseY - imageY;
+
+          const distance = Math.sqrt(
+            distanceX * distanceX + distanceY * distanceY
+          );
+          const maxDistance = 400;
+          const intensity = Math.max(0, 1 - distance / maxDistance);
+
+          const moveX = distanceX * 0.5 * intensity;
+          const moveY = distanceY * 0.5 * intensity;
+
+          image.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      }
+
+     
+      function enableParallax() {
+        if (!parallaxEnabled) {
+          document.addEventListener("mousemove", handleMouseMove);
+          parallaxEnabled = true;
+        }
+      }
+
+     
+      function disableParallax() {
+        if (parallaxEnabled) {
+          document.removeEventListener("mousemove", handleMouseMove);
+          parallaxEnabled = false;
+          images.forEach((image) => {
+            image.style.transform = "";
+          });
+        }
+      }
+
+    
+      function checkViewportSize() {
+        if (window.innerWidth >= 768) {
+          enableParallax();
+        } else {
+          disableParallax();
+        }
+      }
+
+    
+      window.addEventListener("load", checkViewportSize);
+      window.addEventListener("resize", checkViewportSize);
+    </script>
+  </body>
+</html>
